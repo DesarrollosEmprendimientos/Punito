@@ -1,45 +1,33 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Escáner QR - Lista de Pasajeras</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f4f4f9;
-      margin: 0;
-      padding: 20px;
-    }
-    .logo-container {
-      margin-bottom: 20px;
-    }
-    .logo-container img {
-      max-width: 150px;
-      height: auto;
-    }
-    #reader {
-      width: 100%;
-      max-width: 400px;
-      margin: 0 auto;
-    }
-  </style>
-  <!-- Librería del lector QR -->
-  <script src="https://unpkg.com/html5-qrcode"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Asistencia - Pasajeras</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <!-- Librería para el escaneo de QR mediante la cámara -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
 </head>
 <body>
+    <div class="container">
+        <h1>Control de Asistencia</h1>
+        <p class="instruction">Toca el ícono del puño para escanear el código QR</p>
+        
+        <!-- Botón con tu imagen del puño -->
+        <div id="scan-trigger" class="puño-container" title="Toca para escanear">
+            <img src="puno.png" alt="Escanear QR" id="puño-img">
+        </div>
 
-  <!-- Logo de la APP (Asegúrate de que 'tu-logo-real.png' coincida con el nombre de tu archivo) -->
-  <div class="logo-container">
-    <img src="puno.png" alt="Logo App" id="app-logo">
-    <h2>Control de Asistencia</h2>
-  </div>
+        <!-- Contenedor de la cámara (Oculto hasta que se presiona el puño) -->
+        <div id="reader-container" style="display:none;">
+            <div id="reader"></div>
+            <button id="cancel-btn">Cancelar</button>
+        </div>
 
-  <!-- Vista del Escáner QR -->
-  <div id="reader"></div>
+        <div id="result"></div>
+    </div>
 
-  <!-- Script principal -->
-  <script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>

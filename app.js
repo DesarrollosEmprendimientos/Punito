@@ -1,5 +1,5 @@
 // Reemplaza con la URL que obtuviste al desplegar tu Google Apps Script
-const WEB_APP_URL = "TU_URL_DE_APPS_SCRIPT_AQUI"; 
+const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxJKib8xBJPLPrFpt0D5-Ez3qT2kFYUSVisK-ECa-KQ4oKthpD_E7g7g9JcYXJ5Xh1R/exec"; 
 
 const trigger = document.getElementById("scan-trigger");
 const readerContainer = document.getElementById("reader-container");

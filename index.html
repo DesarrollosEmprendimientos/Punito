@@ -13,77 +13,33 @@
       padding: 20px;
     }
     .logo-container {
-      margin-bottom: 15px;
-      cursor: pointer; /* Muestra que se puede presionar */
-      display: inline-block;
+      margin-bottom: 20px;
     }
     .logo-container img {
       max-width: 150px;
       height: auto;
-      transition: transform 0.2s;
-    }
-    .logo-container img:active {
-      transform: scale(0.95); /* Efecto visual al tocar el logo */
     }
     #reader {
       width: 100%;
-      max-width: 350px;
+      max-width: 400px;
       margin: 0 auto;
     }
-    /* Contenedor del listado en vivo debajo */
-    #contenedor-asistencia {
-      margin-top: 25px;
-      max-width: 380px;
-      margin-left: auto;
-      margin-right: auto;
-      background: #ffffff;
-      padding: 15px;
-      border-radius: 8px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-      text-align: left;
-    }
-    #contenedor-asistencia h4 {
-      margin-top: 0;
-      color: #333;
-      border-bottom: 2px solid #4CAF50;
-      padding-bottom: 5px;
-    }
-    #lista-asistencia-reciente {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-      max-height: 250px;
-      overflow-y: auto;
-    }
-    #lista-asistencia-reciente li {
-      padding: 8px 0;
-      border-bottom: 1px solid #eee;
-      color: #2e7d32;
-      font-weight: bold;
-      font-size: 14px;
-    }
   </style>
+  <!-- Librería del lector QR -->
   <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
 
-  <!-- Logo de la APP que actúa como botón al presionarlo -->
-  <div class="logo-container" onclick="iniciarEscanner()">
+  <!-- Logo de la APP (Asegúrate de que 'tu-logo-real.png' coincida con el nombre de tu archivo) -->
+  <div class="logo-container">
     <img src="puno.png" alt="Logo App" id="app-logo">
-    <div style="font-size: 13px; color: #555; margin-top: 5px; font-weight: bold;"></div>
+    <h2>Control de Asistencia</h2>
   </div>
 
-  <!-- Vista de la cámara (aparecerá al tocar el logo) -->
+  <!-- Vista del Escáner QR -->
   <div id="reader"></div>
 
-  <!-- Listado en tiempo real debajo -->
-  <div id="contenedor-asistencia">
-    <h4>Últimos registros:</h4>
-    <ul id="lista-asistencia-reciente">
-      <!-- Aquí aparecerán dinámicamente -->
-    </ul>
-  </div>
-
+  <!-- Script principal -->
   <script src="app.js"></script>
 </body>
 </html>

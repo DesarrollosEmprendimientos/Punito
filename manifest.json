@@ -1,14 +1,14 @@
 {
-  "name": "Control Asistencia QR",
+  "name": "Control Asistencia Pasajeras",
   "short_name": "AsistenciaQR",
   "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#4CAF50",
+  "background_color": "#f7f3fb",
+  "theme_color": "#4a148c",
   "icons": [
     {
-      "src": "tu-imagen-de-puno.png",
-      "sizes": "192x192",
+      "src": "puno.png",
+      "sizes": "512x512",
       "type": "image/png"
     }
   ]

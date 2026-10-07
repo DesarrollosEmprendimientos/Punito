@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Escáner QR - Lista de Pasajeras</title>
-  <!-- Aquí puedes mantener tus estilos o enlaces a CSS existentes -->
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -14,18 +13,24 @@
       padding: 20px;
     }
     .logo-container {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
+      cursor: pointer; /* Muestra que se puede presionar */
+      display: inline-block;
     }
     .logo-container img {
       max-width: 150px;
       height: auto;
+      transition: transform 0.2s;
+    }
+    .logo-container img:active {
+      transform: scale(0.95); /* Efecto visual al tocar el logo */
     }
     #reader {
       width: 100%;
-      max-width: 400px;
+      max-width: 350px;
       margin: 0 auto;
     }
-    /* Contenedor del listado en vivo debajo del logo */
+    /* Contenedor del listado en vivo debajo */
     #contenedor-asistencia {
       margin-top: 25px;
       max-width: 380px;
@@ -58,22 +63,20 @@
       font-size: 14px;
     }
   </style>
-  <!-- Librería de ejemplo para lector QR (html5-qrcode u otra que estés usando) -->
   <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
 
-  <!-- Logo de la APP -->
-  <div class="logo-container">
-    <!-- Reemplaza src con la ruta de tu logo -->
-    <img src="puno.png" alt="Logo App" id="app-logo">
-    <h2>Control de Asistencia</h2>
+  <!-- Logo de la APP que actúa como botón al presionarlo -->
+  <div class="logo-container" onclick="iniciarEscanner()">
+    <img src="tu-logo-real.png" alt="Logo App" id="app-logo">
+    <div style="font-size: 13px; color: #555; margin-top: 5px; font-weight: bold;">📷 Toca el logo para escanear</div>
   </div>
 
-  <!-- Vista previa o componente del Escáner QR -->
+  <!-- Vista de la cámara (aparecerá al tocar el logo) -->
   <div id="reader"></div>
 
-  <!-- Listado en tiempo real debajo del logo -->
+  <!-- Listado en tiempo real debajo -->
   <div id="contenedor-asistencia">
     <h4>Últimos registros:</h4>
     <ul id="lista-asistencia-reciente">
@@ -81,7 +84,6 @@
     </ul>
   </div>
 
-  <!-- Script principal de la aplicación -->
   <script src="app.js"></script>
 </body>
 </html>

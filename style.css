@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
+    margin: 0;
+    padding: 20px;
+}
+.container {
+    max-width: 500px;
+    margin: auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+.puño-container {
+    cursor: pointer;
+    margin: 30px 0;
+    transition: transform 0.2s;
+}
+.puño-container:active {
+    transform: scale(0.95);
+}
+.puño-container img {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+}
+#reader {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+}
+#cancel-btn {
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 1.1em;
+}

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control de Presentes - PWA</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="style.css">
+    <!-- Librería para lectura de QR -->
+    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Control de Asistencia</h1>
+        
+        <!-- Contenedor interactivo con la imagen del puño -->
+        <div id="scan-trigger" class="puño-container" title="Toca el puño para escanear">
+            <!-- Reemplaza o usa tu imagen de puño aquí -->
+            <img src="tu-imagen-de-puno.png" alt="Escanear QR" id="puño-img">
+            <p>Toca el puño para escanear</p>
+        </div>
+
+        <!-- Lector QR (Oculto hasta hacer clic) -->
+        <div id="reader-container" style="display:none;">
+            <div id="reader"></div>
+            <button id="cancel-btn">Cancelar</button>
+        </div>
+
+        <div id="result"></div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,33 +1,87 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Asistencia - Pasajeras</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="stylesheet" href="style.css">
-    <!-- Librería para el escaneo de QR mediante la cámara -->
-    <script src="https://unpkg.com/html5-qrcode" type="text/javascript"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escáner QR - Lista de Pasajeras</title>
+  <!-- Aquí puedes mantener tus estilos o enlaces a CSS existentes -->
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    .logo-container {
+      margin-bottom: 20px;
+    }
+    .logo-container img {
+      max-width: 150px;
+      height: auto;
+    }
+    #reader {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    /* Contenedor del listado en vivo debajo del logo */
+    #contenedor-asistencia {
+      margin-top: 25px;
+      max-width: 380px;
+      margin-left: auto;
+      margin-right: auto;
+      background: #ffffff;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      text-align: left;
+    }
+    #contenedor-asistencia h4 {
+      margin-top: 0;
+      color: #333;
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 5px;
+    }
+    #lista-asistencia-reciente {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      max-height: 250px;
+      overflow-y: auto;
+    }
+    #lista-asistencia-reciente li {
+      padding: 8px 0;
+      border-bottom: 1px solid #eee;
+      color: #2e7d32;
+      font-weight: bold;
+      font-size: 14px;
+    }
+  </style>
+  <!-- Librería de ejemplo para lector QR (html5-qrcode u otra que estés usando) -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Control de Asistencia</h1>
-        <p class="instruction">Toca el ícono del puño para escanear el código QR</p>
-        
-        <!-- Botón con tu imagen del puño -->
-        <div id="scan-trigger" class="puño-container" title="Toca para escanear">
-            <img src="puno.png" alt="Escanear QR" id="puño-img">
-        </div>
 
-        <!-- Contenedor de la cámara (Oculto hasta que se presiona el puño) -->
-        <div id="reader-container" style="display:none;">
-            <div id="reader"></div>
-            <button id="cancel-btn">Cancelar</button>
-        </div>
+  <!-- Logo de la APP -->
+  <div class="logo-container">
+    <!-- Reemplaza src con la ruta de tu logo -->
+    <img src="logo.png" alt="Logo App" id="app-logo">
+    <h2>Control de Asistencia</h2>
+  </div>
 
-        <div id="result"></div>
-    </div>
+  <!-- Vista previa o componente del Escáner QR -->
+  <div id="reader"></div>
 
-    <script src="app.js"></script>
+  <!-- Listado en tiempo real debajo del logo -->
+  <div id="contenedor-asistencia">
+    <h4>Últimos registros:</h4>
+    <ul id="lista-asistencia-reciente">
+      <!-- Aquí aparecerán dinámicamente -->
+    </ul>
+  </div>
+
+  <!-- Script principal de la aplicación -->
+  <script src="app.js"></script>
 </body>
 </html>

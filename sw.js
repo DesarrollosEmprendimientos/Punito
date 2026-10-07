@@ -1,3 +1,3 @@
 self.addEventListener('fetch', (event) => {
-  // Caché básico offline opcional
+  // Manejo básico de red para PWA
 });

@@ -1,31 +1,47 @@
-// URL de tu Web App de Google Apps Script (reemplaza con la tuya si es necesario)
-const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxJKib8xBJPLPrFpt0D5-Ez3qT2kFYUSVisK-ECa-KQ4oKthpD_E7g7g9JcYXJ5Xh1R/exec";
+const WEB_APP_URL = "TU_URL_DE_APPS_SCRIPT_AQUI/exec";
+let html5QrCode = null;
 
-function onScanSuccess(decodedText, decodedResult) {
-  // Limpiamos cualquier carácter sobrante que pueda traer el QR
-  let nombrePasajera = decodedText.replace(/["'{}]/g, "").trim();
+function iniciarEscanner() {
+  // Evita iniciar la cámara dos veces si ya está abierta
+  if (html5QrCode && html5QrCode.isScanning) return;
 
-  if (!nombrePasajera) return;
+  if (!html5QrCode) {
+    html5QrCode = new Html5Qrcode("reader");
+  }
 
-  console.log("Escaneado: " + nombrePasajera);
-
-  // Enviamos los datos al backend de Google Sheets
-  fetch(WEB_APP_URL, {
-    method: "POST",
-    mode: "no-cors", // Evita problemas de CORS con Google Apps Script
-    headers: {
-      "Content-Type": "application/json"
+  html5QrCode.start(
+    { facingMode: "environment" }, // Cámara trasera del celular
+    {
+      fps: 10,
+      qrbox: { width: 250, height: 250 }
     },
-    body: JSON.stringify({ nombre: nombrePasajera })
-  })
-  .then(() => {
-    // Como usamos 'no-cors' no se puede leer la respuesta JSON directamente,
-    // pero si el fetch pasa con éxito, actualizamos la interfaz visual de inmediato.
-    agregarAListadoVisual(nombrePasajera);
-  })
-  .catch(error => {
-    console.error("Error al registrar asistencia:", error);
-    alert("Hubo un error al registrar la asistencia.");
+    (decodedText, decodedResult) => {
+      // Limpieza de caracteres del QR
+      let nombrePasajera = decodedText.replace(/["'{}]/g, "").trim();
+      if (!nombrePasajera) return;
+
+      console.log("Escaneado: " + nombrePasajera);
+
+      // Enviar a Google Sheets
+      fetch(WEB_APP_URL, {
+        method: "POST",
+        mode: "no-cors",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nombre: nombrePasajera })
+      })
+      .then(() => {
+        agregarAListadoVisual(nombrePasajera);
+      })
+      .catch(error => {
+        console.error("Error al registrar:", error);
+      });
+    },
+    (errorMessage) => {
+      // Errores de cuadro por cuadro se ignoran silenciosamente
+    }
+  ).catch(err => {
+    console.error("No se pudo iniciar la cámara:", err);
+    alert("Permiso de cámara denegado o no disponible.");
   });
 }
 
@@ -38,16 +54,7 @@ function agregarAListadoVisual(nombre) {
     // Formato exacto solicitado
     nuevoElemento.textContent = nombre + "....¡PRESENTE!";
     
-    // Lo insertamos al tope de la lista para ver el último escaneo primero
+    // Lo agregamos arriba de todo
     contenedorLista.prepend(nuevoElemento);
   }
 }
-
-// Inicialización del lector QR (ajusta según la librería que uses, ej. Html5QrcodeScanner)
-document.addEventListener("DOMContentLoaded", () => {
-  const html5QrcodeScanner = new Html5QrcodeScanner(
-    "reader", { fps: 10, qrbox: 250 }, false);
-  html5QrcodeScanner.render(onScanSuccess, (error) => {
-    // Manejo de errores de escaneo menores (opcional)
-  });
-});
